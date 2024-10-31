@@ -1,4 +1,4 @@
-import { FormDataProps } from "../types/formdata";
+import { FormDataProps } from "../types/Formdata";
 import { api } from "./api.ts";
 
 export const cadastrar = async (formData: FormDataProps) => {
@@ -6,7 +6,7 @@ export const cadastrar = async (formData: FormDataProps) => {
     
     const response = await api.post("/cadastrar", formData);
     return response.data; 
-}   catch (error) {
-    throw new Error('Erro ao fazer login');
-  }
+} catch (error: unknown) {
+    throw new Error(error as string);
+}
 };

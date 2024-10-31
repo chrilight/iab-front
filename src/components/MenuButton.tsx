@@ -2,9 +2,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Icon } from '@mui/material';
 
+interface MenuButtonProps {
+  isMenuOpen: boolean;
+  handleToggleMenu: () => void;
+}
 
-
-export function MenuButton({ isMenuOpen, handleToggleMenu }) {
+export function MenuButton({ isMenuOpen, handleToggleMenu }: MenuButtonProps) {
   return (
     <Icon 
         component={isMenuOpen? CloseIcon: MenuIcon}

@@ -1,6 +1,6 @@
 import { ChangeEvent, createContext, ReactNode, useState } from "react";
 import { cadastrar } from "../services/cadastro";
-import { defaultFormData, FormDataProps } from "../types/formdata";
+import { defaultFormData, FormDataProps } from "../types/Formdata";
 
 interface FormProviderProps {
     children?: ReactNode;
