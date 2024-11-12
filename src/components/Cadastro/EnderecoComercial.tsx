@@ -31,6 +31,17 @@ export function EnderecoComercial() {
         if (numero.trim().length < 1) newErrors.push("endereco_secundario.numero");
         if (complemento.trim().length > 50) newErrors.push("endereco_secundario.complemento");
 
+        // all fields empty, optional so can pass through
+        if (
+            cep.trim().length === 0 &&
+            logradouro.trim().length === 0 &&
+            cidade.trim().length === 0 &&
+            bairro.trim().length === 0 &&
+            numero.trim().length === 0 &&
+            complemento.trim().length === 0
+        ) {
+            return true;
+        }
         if (newErrors.length > 0) {
             addError(newErrors);
             return false;
