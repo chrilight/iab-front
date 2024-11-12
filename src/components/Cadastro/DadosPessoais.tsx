@@ -80,7 +80,7 @@ export function DadosPessoais() {
                     onChange={updateFormData}
                 />
             </Box>
-            <Box sx={{ display: "flex", justifyContent: "space-between", gap: "3rem" }}>
+            <Box sx={{ display: "flex", justifyContent: "space-between", gap: "3rem", "@media (max-width: 600px)": { flexDirection: "column"} }}>
                 <Box flex={1}>
                     <Box marginBottom="1.75rem">
                         <TextField
@@ -88,9 +88,11 @@ export function DadosPessoais() {
                             error={errors.includes("cpf")}
                             label="CPF*"
                             value={cpf}
-                            fullWidth
                             slotProps={CpfMask}
                             onChange={updateFormData}
+                            sx={{
+                                width: "74.5%"
+                            }}
                         />
                     </Box>
                     <Line marginBottom="1.75rem"
@@ -102,6 +104,9 @@ export function DadosPessoais() {
                             value={celular}
                             slotProps={TelefoneMask}
                             onChange={updateFormData}
+                            sx={{
+                                width: "35%"
+                            }}
                         />
                         <TextField
                             name="fixo"
@@ -110,6 +115,9 @@ export function DadosPessoais() {
                             value={fixo}
                             slotProps={TelefoneMask}
                             onChange={updateFormData}
+                            sx={{
+                                width: "35%"
+                            }}
                         />
                     </Line>
 
@@ -121,6 +129,9 @@ export function DadosPessoais() {
                             label="Usuario*"
                             value={usuario}
                             onChange={updateFormData}
+                            sx={{
+                                width: "35%"
+                            }}
                         />
                         <TextField
                             name="senha"
@@ -128,6 +139,9 @@ export function DadosPessoais() {
                             label="Senha*"
                             value={senha}
                             onChange={updateFormData}
+                            sx={{
+                                width: "35%"
+                            }}
                         />
                     </Line>
                 </Box>
@@ -137,10 +151,11 @@ export function DadosPessoais() {
                         flexDirection: "column",
                         alignItems: "center",
                         gap: "1rem",
+                        px: "auto"
                     }}
                 >
                     <img
-                        width="150px"
+                        width="130px"
                         style={{ aspectRatio: "3/4", objectFit: "cover" }}
                         src={previewImg || defaultImg}
                     />

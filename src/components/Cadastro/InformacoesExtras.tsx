@@ -147,11 +147,7 @@ export function InformacoesExtras() {
                     value={ano_estimado_conclusao}
                     error={error.includes("ano_estimado_conclusao")}
                     onChange={updateFormData}
-                    slotProps={{
-                        input: {
-                            inputComponent: AnoMask as never,
-                        },
-                    }}
+                    slotProps={AnoMask}
                 />
             </Box>
             <ActionButtons handleCheckFields={handleAvancar} />
