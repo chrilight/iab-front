@@ -7,6 +7,7 @@ import { Institucional } from "./pages/Institucional";
 import { Convenios } from "./pages/Convenios";
 import AguardandoConfirmacao from "./pages/AguardandoConfirmacao";
 import { PaginaNaoEncontrada } from "./pages/PaginaNaoEncontrada";
+import { Perfil } from "./pages/Perfil";
 
 export const routes = [
     {
@@ -39,7 +40,7 @@ export const routes = [
             },
             {
                 path: "perfil",
-                element: <div>Página de Perfil</div>
+                element: <Perfil />
             },
             {
                 path: "*",

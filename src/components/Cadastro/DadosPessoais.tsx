@@ -159,7 +159,7 @@ export function DadosPessoais() {
                         style={{ aspectRatio: "3/4", objectFit: "cover" }}
                         src={previewImg || defaultImg}
                     />
-                    <Typography sx={{ fontWeight: "medium" }}>Foto de perfil</Typography>
+                    <Typography sx={{ fontWeight: "medium" }}>Foto de carteirinha</Typography>
                     <Button variant="contained" component="label" color="error">
                         Adicionar Foto
                         <input
