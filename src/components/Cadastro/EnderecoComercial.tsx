@@ -47,11 +47,7 @@ export function EnderecoComercial() {
                     error={errors.includes("cep")}
                     label="CEP*"
                     sx={mobileStyles}
-                    slotProps={{
-                        input: {
-                            inputComponent: CepMask as never,
-                        }
-                    }}
+                    slotProps={CepMask}
                     value={cep}
                     onChange={updateFormData}
                 />
