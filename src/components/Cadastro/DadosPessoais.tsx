@@ -5,14 +5,11 @@ import {
     TextField,
     Typography,
     Button,
-    IconButton,
 } from "@mui/material";
 import { useContext, useState } from "react";
 import { ActionButtons } from "../ActionButtons";
 import { FormContext } from "../../context/FormContext";
 import { CpfMask, TelefoneMask } from "../MaskedInput";
-import { Label } from "@mui/icons-material";
-import PublishIcon from '@mui/icons-material/Publish';
 export function DadosPessoais() {
     const { formData, updateFormData, errors, addError } = useContext(FormContext)
     const { nome, email, cpf, celular, fixo, usuario, senha } = formData;

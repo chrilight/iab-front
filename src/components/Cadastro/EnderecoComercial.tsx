@@ -1,7 +1,7 @@
-import { useState, ChangeEvent, useEffect, useContext } from 'react';
-import { Box, CircularProgress, TextField } from "@mui/material";
+import { useContext } from 'react';
+import { Box, TextField } from "@mui/material";
 import { ActionButtons } from "../ActionButtons";
-import { FormContext, FormObjectProps } from '../../context/FormContext';
+import { FormContext } from '../../context/FormContext';
 import { CepMask } from '../MaskedInput';
 
 const mobileStyles = {
@@ -17,7 +17,7 @@ export function EnderecoComercial() {
     const { endereco_secundario } = formData;
     const { cep, cidade, logradouro, bairro, numero, complemento } = endereco_secundario;
 
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
 
 
 
@@ -55,11 +55,11 @@ export function EnderecoComercial() {
                     value={cep}
                     onChange={updateFormData}
                 />
-                {
+                {/*
                     loading
                         ? <CircularProgress size={35} color="error" />
                         : null
-                }
+                */}
             </Box>
             <Box>
                 <TextField

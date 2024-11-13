@@ -1,5 +1,5 @@
-import { useState, useContext } from "react";
-import { Box, CircularProgress, TextField } from "@mui/material";
+import { useContext } from "react";
+import { Box, TextField } from "@mui/material";
 import { ActionButtons } from "../ActionButtons";
 import { FormContext } from "../../context/FormContext";
 import { CepMask } from "../MaskedInput";
@@ -18,7 +18,7 @@ export function EnderecoPessoal() {
     const { cep, cidade, logradouro, bairro, numero, complemento } =
         endereco_primario;
 
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
 
 
     const handleAvancar = () => {
@@ -54,7 +54,7 @@ export function EnderecoPessoal() {
                     value={cep}
                     onChange={updateFormData}
                 />
-                {loading ? <CircularProgress size={35} color="error" /> : null}
+               {/*loading ? <CircularProgress size={35} color="error" /> : null */}
             </Box>
             <Box>
                 <TextField

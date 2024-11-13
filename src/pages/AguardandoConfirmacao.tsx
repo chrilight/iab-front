@@ -1,5 +1,5 @@
 import { Email, WhatsApp } from '@mui/icons-material';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import clock from '../assets/clock.svg'
 import { Link } from 'react-router-dom';
 
