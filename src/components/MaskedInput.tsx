@@ -9,7 +9,7 @@ interface CustomProps {
 }
 
 
-export const CpfMask = forwardRef<HTMLInputElement, CustomProps>(
+const CpfMaskComponent = forwardRef<HTMLInputElement, CustomProps>(
     function TextMaskCustom(props, ref) {
         const { onChange, ...other } = props;
         return (
@@ -27,7 +27,7 @@ export const CpfMask = forwardRef<HTMLInputElement, CustomProps>(
     },
 );
 
-export const CepMask = forwardRef<HTMLInputElement, CustomProps>(
+const CepMaskComponent = forwardRef<HTMLInputElement, CustomProps>(
     function TextMaskCustom(props, ref) {
         const { onChange, ...other } = props;
         return (
@@ -45,7 +45,7 @@ export const CepMask = forwardRef<HTMLInputElement, CustomProps>(
     },
 );
 
-export const TelefoneMask = forwardRef<HTMLInputElement, CustomProps>(
+const TelefoneMaskComponent = forwardRef<HTMLInputElement, CustomProps>(
     function TextMaskCustom(props, ref) {
         const { onChange, ...other } = props;
         return (
@@ -63,7 +63,7 @@ export const TelefoneMask = forwardRef<HTMLInputElement, CustomProps>(
     },
 );
 
-export const AnoMask = forwardRef<HTMLInputElement, CustomProps>(
+const AnoMaskComponent = forwardRef<HTMLInputElement, CustomProps>(
     function TextMaskCustom(props, ref) {
         const { onChange, ...other } = props;
         return (
@@ -80,4 +80,29 @@ export const AnoMask = forwardRef<HTMLInputElement, CustomProps>(
         );
     },
 );
+
+
+export const TelefoneMask = {
+    input: {
+        inputComponent: TelefoneMaskComponent as never,
+    },
+}
+
+export const CpfMask = {
+    input: {
+        inputComponent: CpfMaskComponent as never,
+    },
+}
+
+export const CepMask = {
+    input: {
+        inputComponent: CepMaskComponent as never,
+    },
+}
+
+export const AnoMask = {
+    input: {
+        inputComponent: AnoMaskComponent as never,
+    },
+}
 

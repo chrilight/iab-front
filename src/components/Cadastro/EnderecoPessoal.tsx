@@ -46,11 +46,7 @@ export function EnderecoPessoal() {
                     error={errors.includes("endereco_primario.cep")}
                     label="CEP*"
                     sx={mobileStyles}
-                    slotProps={{
-                        input: {
-                            inputComponent: CepMask as never,
-                        },
-                    }}
+                    slotProps={CepMask}
                     value={cep}
                     onChange={updateFormData}
                 />

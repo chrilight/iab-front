@@ -32,7 +32,9 @@ const links = [
     { label: "Institucional", url: "/institucional" },
     // { label: "Notícias", url: "/noticias" },
     { label: "Login", url: "/login" },
+    { label: "Perfil", url: "/perfil" },
 ];
+
 
 const menuHoverStyles = {
     "@media (max-width: 600px)": {
@@ -54,6 +56,17 @@ const menuStyles = {
 
 export function Navbar({ isMenuOpen }: { isMenuOpen: boolean }) {
     const { pathname } = useLocation();
+    const isLoggedIn = true;
+
+    const checkUrls = (url) => {
+        if (!isLoggedIn) {
+            return url.label !== "Perfil"
+        } else {
+            return url.label !== "Login"
+        }
+    }
+
+
     return (
         <StyledNavbar sx={isMenuOpen ? menuHoverStyles : menuStyles}>
             <Link
@@ -71,7 +84,7 @@ export function Navbar({ isMenuOpen }: { isMenuOpen: boolean }) {
             >
                 <img width={"50px"} src={logo} alt="Logo" />
             </Link>
-            {links.map(({ label, url }) => (
+            {links.filter(checkUrls).map(({ label, url }) => (
                 <StyledLink
                     sx={{
                         "@media (max-width: 600px)": {
