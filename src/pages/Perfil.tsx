@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import defaultImg from "../assets/defaultProfilePhoto.png";
 import formMock from "../mocks/formMock.json";
 import { defaultFormData, FormDataProps, FormObjectProps } from "../types/Formdata";
+import ModalCarteirinha from "../components/ModalCarteirinha";
 
 export const StyledSubtitle = styled(Typography)({
     fontSize: "1.5rem",
@@ -34,6 +35,7 @@ export function Perfil() {
     const [isEditing, setIsEditing] = useState(false);
     const [defaultFormState, setDefaultFormState] = useState(defaultFormData);
     const [formState, setFormState] = useState(defaultFormData);
+    const [carteirinhaModal, setCarteirinhaModal] = useState(false);
 
     const CheckboxButton = ({ name }: { name: string }) => (
         <Checkbox
@@ -80,7 +82,7 @@ export function Perfil() {
         >
             <StyledTitle>Meu perfil</StyledTitle>
             <Box sx={{ display: "flex", justifyContent: "end", gap: "1.5rem" }}>
-                <Button variant="outlined" color="error" disabled={isEditing} endIcon={<BadgeIcon />}>
+                <Button variant="outlined" color="error" disabled={isEditing} endIcon={<BadgeIcon />} onClick={() => setCarteirinhaModal(true)}>
                     Visualizar Carteirinha
                 </Button>
                 <Button variant="outlined" disabled={isEditing} onClick={() => setIsEditing(true)} color="error" endIcon={<EditIcon />}>
@@ -266,6 +268,8 @@ export function Perfil() {
                     </Button>
                 </Box>
             </Paper>
+
+                    <ModalCarteirinha onClose={() => setCarteirinhaModal(false)} open={carteirinhaModal}/>
         </Box>
     );
 }

@@ -1,0 +1,36 @@
+{
+    "nome": "Felipe Oliveira",
+    "cpf": "123.456.789-00",
+    "uf_documento": "SP",
+    "matricula_faculdade": "202110001",
+    "celular": "(11) 91234-5678",
+    "fixo": "(11) 3123-4567",
+    "data_filiacao": "2022-05-01",
+    "data_fim_filiacao": "2024-05-01",
+    "email": "felipe.oliveira@example.com",
+    "foto": null,
+    "site": "https://www.felipeoliveira.com",
+    "numero_cau": "SP123456",
+    "instituicao_ensino": "Universidade de São Paulo",
+    "ano_estimado_conclusao": "2025",
+    "usuario": "felipe_oliveira",
+    "senha": "senhaSegura123",
+    "endereco_primario": {
+        "logradouro": "Rua Principal",
+        "numero": "100",
+        "complemento": "........",
+        "bairro": "Centro",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "01000-000"
+    },
+    "endereco_secundario": {
+        "logradouro": "Avenida Secundária",
+        "numero": "200",
+        "complemento": "........",
+        "bairro": "Jardim",
+        "cidade": "Campinas",
+        "estado": "SP",
+        "cep": "13000-000"
+    }
+}
