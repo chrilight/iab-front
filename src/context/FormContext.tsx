@@ -1,6 +1,7 @@
 import { ChangeEvent, createContext, ReactNode, useState } from "react";
 import { cadastrar } from "../services/cadastro";
 import { defaultFormData, FormDataProps } from "../types/Formdata";
+import { buscarCep } from "../services/cep";
 
 interface FormProviderProps {
     children?: ReactNode;
@@ -12,6 +13,7 @@ interface FormProviderValueProps {
     goToPreviousPage: () => void;
     goToNextPage: () => void;
     isLoading: boolean;
+    isLoadingCep: boolean;
     sendFormData: () => void;
     updateFormData: (e: ChangeEvent<HTMLInputElement>) => void;
     errors: string[];
@@ -21,7 +23,8 @@ interface FormProviderValueProps {
 export const FormContext = createContext<FormProviderValueProps>({
     formData: defaultFormData,
     isLoading: false,
-    sendFormData: () => {},
+    isLoadingCep: false,
+    sendFormData: () => { },
     updateFormData: () => { },
     currentPage: 0,
     goToPreviousPage: () => { },
@@ -35,9 +38,11 @@ export const FormProvider = ({ children }: FormProviderProps) => {
 
     const [formData, setFormData] = useState(defaultFormData);
 
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
 
     const [errors, setErrors] = useState<string[]>([]);
+
+    const [isLoadingCep, setIsLoadingCep] = useState(false);
 
     const goToNextPage = () => {
         if (currentPage < 3) {
@@ -47,7 +52,7 @@ export const FormProvider = ({ children }: FormProviderProps) => {
     };
     const goToPreviousPage = () => {
         if (currentPage > 0) {
-            setErrors([])
+            setErrors([]);
             setCurrentPage(currentPage - 1);
         }
     };
@@ -56,6 +61,43 @@ export const FormProvider = ({ children }: FormProviderProps) => {
         setErrors((prevState) => [...prevState, ...newErrors]);
     };
 
+    const updateEndereco = async (
+        e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
+    ) => {
+        const { name, value } = e.target;
+
+        const parentField = name.split(".")[0] as
+            | "endereco_primario"
+            | "endereco_secundario";
+        
+        const campo = name.split(".")[1]
+
+        if (campo === "cep" && value.length === 9) {
+            setIsLoadingCep(true);
+            const endereco = await buscarCep(value);
+            if (endereco) {
+                setFormData((prevState) => ({
+                    ...prevState,
+                    [parentField]: {
+                        ...prevState[parentField],
+                        cep: endereco.cep,
+                        logradouro: endereco.logradouro,
+                        bairro: endereco.bairro,
+                        cidade: endereco.localidade,
+                    },
+                }));
+            }
+            setIsLoadingCep(false);
+        } else {
+            setFormData((prevState) => ({
+                ...prevState,
+                [parentField]: {
+                    ...prevState[parentField],
+                    [name.split(".")[1]]: value,
+                },
+            }));
+        }
+    };
     const updateFormData = (
         e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
     ) => {
@@ -63,17 +105,8 @@ export const FormProvider = ({ children }: FormProviderProps) => {
         if (errors.includes(name)) {
             setErrors(errors.filter((fieldName) => fieldName !== name));
         }
-        if (name === "cep" && value.length === 9) {
-            // buscar cep
-            console.log("buscar cep");
-        }
-        if (name.split('.').length > 1) {
-            const parentField = name.split('.')[0] as 'endereco_primario' | 'endereco_secundario';
-            console.log(formData)
-            setFormData((prevState) => ({
-                ...prevState,
-                [parentField]: { ...prevState[parentField], [name.split('.')[1]]: value },
-            }));
+        if (name.split(".").length > 1) {
+            updateEndereco(e);
         } else {
             setFormData((prevState) => ({ ...prevState, [name]: value }));
         }
@@ -88,7 +121,7 @@ export const FormProvider = ({ children }: FormProviderProps) => {
         } finally {
             setIsLoading(false); // Define loading como false após a chamada
         }
-    }
+    };
 
     return (
         <FormContext.Provider
@@ -101,7 +134,8 @@ export const FormProvider = ({ children }: FormProviderProps) => {
                 errors,
                 addError,
                 sendFormData,
-                isLoading
+                isLoading,
+                isLoadingCep,
             }}
         >
             {children}
